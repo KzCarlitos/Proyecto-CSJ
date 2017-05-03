@@ -96,7 +96,7 @@
                                         <li><a><i class="fa fa-gears"></i> Administrar <span class="fa fa-chevron-down"></span></a>
                                             <ul class="nav child_menu">
                                                 <li> <?php echo anchor("Inicio/nuevo_usuario", "Crear Usuarios", "") ?></li>
-                                                <li><a href="index2.html">Listar Usuarios</a></li>
+                                                <li><?php echo anchor("Inicio/lista_usuarios", "Lista Usuarios", "") ?></li>
                                                 
                                             </ul>
                                         </li>
@@ -147,7 +147,7 @@
                                             <li><a href="javascript:;"> Perfil</a></li>
                                             
                                             <li><a href="javascript:;">Manuales</a></li>
-                                            <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Desconectarse</a></li>
+                                            <li><a href="<?php echo base_url()?>index.php/Inicio/Desconectarse"><i class="fa fa-sign-out pull-right"></i> Desconectarse</a></li>
                                         </ul>
                                     </li>
 
