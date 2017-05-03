@@ -199,7 +199,7 @@ class Inicio extends CI_Controller {
                    $provincia=$this->input->post('provincia');
                    $cpostal=$this->input->post('cpostal');
                   
-                   $contrasena=$this->input->post('pass');
+                  
                    $pinicion=$this->input->post('inicio');
                      
                    $Modificado= array(
@@ -254,4 +254,10 @@ class Inicio extends CI_Controller {
               $this->index();
         }
          
+        
+        public function crear_juicio(){
+            $pagina=$this->load->view('nuevo_juicio','',TRUE);
+                  $this->CargaVista(Array('pagina'=>$pagina));
+            
+        }
 }

@@ -73,7 +73,7 @@
                                         <li><a><i class="fa fa-gavel"></i> Juicios <span class="fa fa-chevron-down"></span></a>
                                             <ul class="nav child_menu">
                                                 <?php if($_SESSION['TipoUsuario']->Tipo_Usuario == "A"){?>
-                                                <li><a href="index.html">Crear Juicio</a></li>
+                                                <li><a href="<?php echo base_url()?>index.php/Inicio/crear_juicio">Crear Juicio</a></li>
                                                 <?php }  ?>
                                                 <li><a href="index2.html">Ver Juicio</a></li>
                                                 

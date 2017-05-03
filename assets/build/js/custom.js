@@ -1748,7 +1748,8 @@ if (typeof NProgress != 'undefined') {
 			});
 			$('#single_cal4').daterangepicker({
 			  singleDatePicker: true,
-			  singleClasses: "picker_4"
+			  singleClasses: "picker_4",
+                          locate: 'es'
 			}, function(start, end, label) {
 			  console.log(start.toISOString(), end.toISOString(), label);
 			});
@@ -1769,8 +1770,10 @@ if (typeof NProgress != 'undefined') {
 			$('#reservation-time').daterangepicker({
 			  timePicker: true,
 			  timePickerIncrement: 30,
+                          
 			  locale: {
-				format: 'MM/DD/YYYY h:mm A'
+				format: 'MM/DD/YYYY h:mm A',
+                               
 			  }
 			});
 	
