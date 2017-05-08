@@ -75,7 +75,7 @@
                                                 <?php if($_SESSION['TipoUsuario']->Tipo_Usuario == "A"){?>
                                                 <li><a href="<?php echo base_url()?>index.php/Inicio/crear_juicio">Crear Juicio</a></li>
                                                 <?php }  ?>
-                                                <li><a href="index2.html">Ver Juicio</a></li>
+                                                <li><a href="<?php echo base_url()?>index.php/Inicio/ver_juicio">Ver Juicio</a></li>
                                                 
                                             </ul>
                                         </li>

@@ -256,7 +256,83 @@ class Inicio extends CI_Controller {
          
         
         public function crear_juicio(){
-            $pagina=$this->load->view('nuevo_juicio','',TRUE);
+            $this->load->model('M_Usuarios');
+            $this->form_validation->set_error_delimiters('<span style="color: red">', '</span>');
+             
+            $this->form_validation->set_rules('fjuicio','Fecha Juicio','required');
+            $this->form_validation->set_rules('acusado','Nombre Acusado','required');
+            $this->form_validation->set_rules('estado','Estado','required');
+            $this->form_validation->set_rules('fichero','Fichero','required');
+            $this->form_validation->set_rules('njuicio','Numero de juicio','required');
+            $this->form_validation->set_rules('nprocedimiento','Procedimiento','required'); 
+
+            $this->form_validation->set_message('required', 'Debes rellenar el campo %s');
+           
+          
+            
+            if($this->form_validation->run()== FALSE)
+                 {
+                   
+                    $usuario=$this->M_Usuarios->Lista_Acusado();
+                    
+                   $pagina=$this->load->view('nuevo_juicio',Array('usuario'=>$usuario),TRUE);
+                   $this->CargaVista(Array('pagina'=>$pagina));
+                      
+                 }
+                 else
+                 {
+                    
+                   $fjuicio=$this->input->post('fjuicio');
+                   $acusado=$this->input->post('acusado');
+                   $abogado=$this->input->post('abogado');
+                   $estado=$this->input->post('estado');
+                   $fichero=$this->input->post('fichero');
+                  
+                   $njuicio=$this->input->post('njuicio');
+                   $descrip =$this->input->post('descripcion');
+                   $nprocedimiento= $this->input->post('nprocedimiento');
+                    
+                   $DNuevojuicio= array(
+                       'Numero_juicio'=>$njuicio,
+                       'Fecha_juicio'=>$fjuicio,
+                       'Estado'=>$estado,
+                      );
+                 
+                   $idjuicio=$this->M_Usuarios->NuevoJuicio($DNuevojuicio);
+                    
+                  
+                   $DNuevoprocedimiento= array(
+                    //'Fecha_Procedimiento' => $fprocedimiento,
+                    'Descripcion'=>$descrip,
+                    'Juicios_ID'=>$idjuicio,
+                    'Num_Procedimiento'=>$nprocedimiento,
+                    'Fichero'=>$fichero);
+                   
+                   $this->M_Usuarios->NuevoProcedimiento($DNuevoprocedimiento);
+                   
+                   
+                   
+                   $DNuevoAbogadoJuicio=array('Usuarios_ID'=>$_SESSION['DatosUsuario'][0]->ID,'Juicios_ID'=>$idjuicio);
+                   $this->M_Usuarios->NuevoAbogadoJuicio($DNuevoAbogadoJuicio);
+
+                   
+                   $DNuevoAcusadoJuicio=array('Usuarios_ID'=>$acusado,'Juicios_ID'=>$idjuicio);
+                    $this->M_Usuarios->NuevoAcusadoJuicio($DNuevoAcusadoJuicio);
+                   
+                 
+                   
+                  
+                    $usuario=$this->M_Usuarios->Lista_Acusado();
+                    
+                   $pagina=$this->load->view('nuevo_juicio',Array('usuario'=>$usuario,'completado'=>TRUE),TRUE);
+                   $this->CargaVista(Array('pagina'=>$pagina));
+                   
+                 }
+            
+        }
+        
+        public function ver_juicio(){
+            $pagina=$this->load->view('ver_juicio','',TRUE);
                   $this->CargaVista(Array('pagina'=>$pagina));
             
         }

@@ -1,6 +1,6 @@
 <div class="">
     <?php if (isset($completado)): ?>    
-        <div class="alert alert-success">Se ha creado el nuevo usuario</div>
+        <div class="alert alert-success">Se ha creado el nuevo juicio</div>
     <?php endif; ?>
     <!--Esta es la zona del titulo de la pagina -->
 
@@ -33,13 +33,13 @@
 
                 <div class="x_content">
 
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="<?php echo base_url('index.php/Inicio/nuevo_usuario/'); ?>">
+                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="<?php echo base_url('index.php/Inicio/crear_juicio');?>">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12" for="nombre">Fecha del Juicio <span class="required">*</span></label>
 
                                 <div class="col-md-8 col-sm-8 col-xs-12 xdisplay_inputx form-group has-feedback">
-                                    <input type="text" class="form-control has-feedback-left" id="single_cal4" placeholder="Fecha del juicio" aria-describedby="inputSuccess2Status4">
+                                    <input type="text" class="form-control has-feedback-left" id="single_cal4" placeholder="Fecha del juicio" aria-describedby="inputSuccess2Status4" name="fjuicio">
                                     <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                     <span id="inputSuccess2Status4" class="sr-only">(success)</span>
                                 </div>
@@ -57,8 +57,9 @@
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12" for="nombre">Nombre Abogado <span class="required">*</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <input type="text" name='abogado' id="abogado" value="<?= set_value('abogado') ?>" class="form-control col-md-7 col-xs-12">
-                                    <?php echo form_error('abogado'); ?>
+                                    <input type="text" name='abogado' id="abogado" value="<?php echo $_SESSION['DatosUsuario'][0]->Nombre ." ".
+                                    $_SESSION['DatosUsuario'][0]->Apellido1 ." ".$_SESSION['DatosUsuario'][0]->Apellido2; ?>" class="form-control col-md-7 col-xs-12" readonly>
+                                    
                                 </div>
                             </div>
 
@@ -66,10 +67,16 @@
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12" for="1Apellido">Nombre Acusado <span class="required">*</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <input type="text" id="acusado" name="acusado" value="<?= set_value('acusado') ?>"  class="form-control col-md-7 col-xs-12">
-                                    <?php echo form_error('acusado'); ?>
+                                    <select class="form-control" name="acusado">
+                                        <?php foreach ($usuario as $user):?>
+                                        <option value="<?=$user->ID?>"><?=$user->Nombre ." ".$user->Apellido1 ." ".$user->Apellido2?></option>
+                                                                               
+                                        <?php endforeach;?>
+                                    </select>
                                 </div>
                             </div>
+
+                           
 
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12" for="estado">Estado<span class="required">*</span>
@@ -100,7 +107,7 @@
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12" for="nombre">Descripción <span class="required"></span>
                                 </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <textarea class="resizable_textarea form-control" placeholder="escriba una descripcion del documento" style="margin: 0px -1px 0px 0px; height: 60px; width: 270px;"></textarea>
+                                    <textarea class="resizable_textarea form-control" name="descripcion" placeholder="escriba una descripcion del documento" style="margin: 0px -1px 0px 0px; height: 60px; width: 270px;"></textarea>
 
                                 </div>
                             </div>
@@ -109,7 +116,7 @@
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12" for="nombre">Fichero <span class="required">*</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage">
+                                    <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" name="fichero">
 
                                 </div>
                             </div>

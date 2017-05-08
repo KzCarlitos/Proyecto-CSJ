@@ -58,6 +58,43 @@ class M_Usuarios extends CI_Model{
 
     }
 
+    public function NuevoJuicio($datos){
+        $this->db->insert('juicio',$datos);
+        return $this->db->insert_id();
+
+    }
+
+     public function NuevoProcedimiento($datos){
+        $this->db->insert('procedimiento',$datos);
+         
+
+    }
+     public function NuevoAbogadoJuicio($datos){
+        $this->db->insert('abogado_juicio',$datos);
+        
+
+    }
+
+      public function NuevoAcusadoJuicio($datos){
+        $this->db->insert('usuario_juico',$datos);
+       
+
+    }
+
+     public function idusuario($dni){
+        $sql="SELECT id FROM USUARIOS where dni ='".$dni."'";
+        $usuarios=$this->db->query($sql);
+        return $usuarios->row();
+    }
+
+    public function Lista_Acusado(){
+        $sql="SELECT * FROM USUARIOS WHERE TIPO_USUARIO ='U'; ";
+        $usuario= $this->db->query($sql);
+        return $usuario->result();
+    }
+
+
+
 
 
 }
