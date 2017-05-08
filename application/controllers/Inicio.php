@@ -332,7 +332,12 @@ class Inicio extends CI_Controller {
         }
         
         public function ver_juicio(){
-            $pagina=$this->load->view('ver_juicio','',TRUE);
+            $this->load->model('M_Usuarios');
+            $idusuario=$_SESSION['DatosUsuario'][0]->ID;
+            $listajuicios= $this->M_Usuarios->Lista_Juicios($idusuario);
+            
+            
+            $pagina=$this->load->view('ver_juicio',Array('listajuicios'=>$listajuicios),TRUE);
                   $this->CargaVista(Array('pagina'=>$pagina));
             
         }

@@ -93,8 +93,18 @@ class M_Usuarios extends CI_Model{
         return $usuario->result();
     }
 
-
-
+   public function Lista_Juicios($idusuario){
+       $sql= "SELECT * FROM `juicio` INNER JOIN abogado_juicio WHERE abogado_juicio.Usuarios_ID ='".$idusuario."' AND abogado_juicio.Juicios_ID= juicio.ID ;";
+       $lista= $this->db->query($sql);
+       return $lista->result();
+   }
+   
+   public function Lista_procedimiento($idjuicio){
+       $sql="SELECT * FROM PROCEDIMIENTO WHERE JUICIOS_ID=$idjuicio";
+       $lista= $this->db->query($sql);
+       return $lista->result();
+       
+   }
 
 
 }
