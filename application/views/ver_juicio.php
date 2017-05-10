@@ -32,10 +32,10 @@
                             ?>
                             <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
                                 <div class="panel">
-                                    <a class="panel-heading" role="tab" id="headingOne<?= $listapro->ID ?>" data-toggle="collapse" data-parent="#accordion" href="#collapseOne<?= $listapro->ID ?>" aria-expanded="true" aria-controls="collapseOne">
+                                    <a class="panel-heading" role="tab" id="headingOne<?= $listapro->ID ?>" data-toggle="collapse" data-parent="#accordion" href="#collapseOne<?= $listapro->ID ?>" aria-expanded="false" aria-controls="collapseOne">
                                         <h4 class="panel-title">Nº Procedimiento: <?= $listapro->Num_Procedimiento ?></h4>
                                     </a>
-                                    <div id="collapseOne<?= $listapro->ID ?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                    <div id="collapseOne<?= $listapro->ID ?>" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
                                         Aqui se visualiza el pdf.
                                     </div>
                                 </div>

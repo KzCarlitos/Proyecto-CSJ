@@ -341,4 +341,17 @@ class Inicio extends CI_Controller {
                   $this->CargaVista(Array('pagina'=>$pagina));
             
         }
+
+          public function ver_tiket(){
+            $this->load->model('M_Usuarios');
+            
+            $listatiket= $this->M_Usuarios->Ver_Tiket('A');
+            
+            
+            $pagina=$this->load->view('ver_tiket',Array('listatiket'=>$listatiket),TRUE);
+                  $this->CargaVista(Array('pagina'=>$pagina));
+            
+        }
+
+
 }

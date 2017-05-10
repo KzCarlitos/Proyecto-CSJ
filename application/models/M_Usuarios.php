@@ -106,5 +106,18 @@ class M_Usuarios extends CI_Model{
        
    }
 
+   public function Ver_Tiket($estado){
+    $sql="SELECT * FROM TICKET WHERE ESTADO ='".$estado."';";
+    $lista=$this->db->query($sql);
+    return $lista->result();
+   }
+
+   public function Ver_Mensaje($idtiket) {
+    $sql="SELECT * FROM MENSAJE WHERE TICKET_ID = ".$idtiket;
+     $mensaje=$this->db->query($sql);
+    return $mensaje->result();
+
+   }
+
 
 }

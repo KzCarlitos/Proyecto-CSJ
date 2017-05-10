@@ -84,8 +84,9 @@
                                     <ul class="nav side-menu">
                                         <li><a><i class="fa fa-commenting-o"></i> Tikets <span class="fa fa-chevron-down"></span></a>
                                             <ul class="nav child_menu">
-                                                <li><a href="index.html">Cerrados</a></li>
-                                                <li><a href="index2.html">Abiertos</a></li>
+
+                                                <li><a href="<?php echo base_url()?>index.php/Inicio/ver_tiket">Cerrados</a></li>
+                                                <li><a href="<?php echo base_url()?>index.php/Inicio/ver_tiket">Abiertos</a></li>
                                                 
                                             </ul>
                                         </li>
