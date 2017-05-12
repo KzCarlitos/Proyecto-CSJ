@@ -107,7 +107,7 @@ class M_Usuarios extends CI_Model{
    }
 
    public function Ver_Tiket($estado){
-    $sql="SELECT * FROM TICKET WHERE ESTADO ='".$estado."';";
+    $sql="SELECT * FROM TICKET WHERE ESTADO ='".$estado."' ORDER BY FECHA_CREACION DESC;";
     $lista=$this->db->query($sql);
     return $lista->result();
    }

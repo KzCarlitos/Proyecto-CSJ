@@ -1,5 +1,7 @@
 <div class="">
-
+<?php if(isset($completado)):?>    
+<div class="alert alert-success">Se ha realizado su tiket. Podras consultarlo en Tikets</div>
+<?php endif;?>
     <!--Esta es la zona del titulo de la pagina -->
 
     <div class="page-title">
