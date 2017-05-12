@@ -32,11 +32,18 @@
                             ?>
                             <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
                                 <div class="panel">
-                                    <a class="panel-heading" role="tab" id="headingOne<?= $listapro->ID ?>" data-toggle="collapse" data-parent="#accordion" href="#collapseOne<?= $listapro->ID ?>" aria-expanded="false" aria-controls="collapseOne">
-                                        <h4 class="panel-title">Nº Procedimiento: <?= $listapro->Num_Procedimiento ?></h4>
+                                    <div class="panel-heading" >
+                                    <a role="tab" id="headingOne<?= $listapro->ID ?>" data-toggle="collapse" data-parent="#accordion" href="#collapseOne<?= $listapro->ID ?>" aria-expanded="false" aria-controls="collapseOne">
+                                        <h4 class="panel-title ">Nº Procedimiento: <?= $listapro->Num_Procedimiento ?>
+                                        <small>&nbsp;&nbsp;<?= $listapro->Descripcion ?>  </small>
+                                         <a href="<?= base_url() ?>index.php/Inicio/Crear_Tiket/<?= $listapro->ID ?>" class="panel-title pull-right " ><i class="fa fa-commenting-o"></i></a>
+                                        </h4>
                                     </a>
+                                   
+                                    </div>
                                     <div id="collapseOne<?= $listapro->ID ?>" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
-                                        Aqui se visualiza el pdf.
+                                       
+                                        <embed src="<?= base_url() ?>uploads/prueba.pdf" width="100%" height="500">
                                     </div>
                                 </div>
                             <?php endforeach; ?>

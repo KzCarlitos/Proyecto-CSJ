@@ -99,7 +99,7 @@
                                 </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     <input type="text" name='nprocedimiento' id="nprocedimiento" value="<?= set_value('nprocedimiento') ?>" class="form-control col-md-7 col-xs-12">
-
+                                    <?php echo form_error('nprocedimiento'); ?>
                                 </div>
                             </div>
 
@@ -108,7 +108,7 @@
                                 </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     <textarea class="resizable_textarea form-control" name="descripcion" placeholder="escriba una descripcion del documento" style="margin: 0px -1px 0px 0px; height: 60px; width: 270px;"></textarea>
-
+                                    <?php echo form_error('descripcion'); ?>
                                 </div>
                             </div>
 
@@ -117,7 +117,7 @@
                                 </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" name="fichero">
-
+                                     <?php echo form_error('fichero'); ?>
                                 </div>
                             </div>
 

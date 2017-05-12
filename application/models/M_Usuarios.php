@@ -118,6 +118,21 @@ class M_Usuarios extends CI_Model{
     return $mensaje->result();
 
    }
+   
+   public function Devuelve_Nprocedimiento($id){
+       $sql="SELECT NUM_PROCEDIMIENTO FROM PROCEDIMIENTO WHERE ID=".$id;
+       $numero= $this->db->query($sql);
+       return $numero->row();
+   }
+
+   public function NuevoTiket($datos){
+    $this->db->insert('ticket',$datos);
+    return $this->db->insert_id();
+   }
+
+   public function NuevoMensaje($datos){
+    $this->db->insert('mensaje',$datos);
+   }
 
 
 }

@@ -353,5 +353,67 @@ class Inicio extends CI_Controller {
             
         }
 
+        public function Crear_Tiket(){
+          $this->load->model('M_Usuarios');
+
+          $this->form_validation->set_error_delimiters('<span style="color: red">', '</span>');
+             
+            $this->form_validation->set_rules('nprocedimiento','Nº Procedimiento','required');
+            $this->form_validation->set_rules('abogado','Nombre Abogado','required');
+            $this->form_validation->set_rules('acusado','Nombre Acusado','required');
+            $this->form_validation->set_rules('estado','Estado','required');
+            $this->form_validation->set_rules('mensaje','Mensaje','required');
+            
+
+            $this->form_validation->set_message('required', 'Debes rellenar el campo %s');
+           
+          
+            
+            if($this->form_validation->run()== FALSE)
+                 {
+
+
+              $id_procedimiento=$this->uri->segment(3);
+              $nprocedimiento=$this->M_Usuarios->Devuelve_Nprocedimiento($id_procedimiento);
+
+              $acusados=$this->M_Usuarios->Lista_Acusado();
+
+               $pagina=$this->load->view('crear_tiket',Array('nprocedimiento'=>$nprocedimiento, 'acusados'=>$acusados),TRUE);
+                      $this->CargaVista(Array('pagina'=>$pagina));
+          }else{
+
+              $id_procedimiento=$this->uri->segment(3);
+             $abogado=$this->input->post('abogado');
+             $acusado=$this->input->post('acusado');
+             $estado=$this->input->post('estado');
+
+             $procedimiento=array('Estado'=>$estado,
+                                  'Procedimiento_ID'=>$id_procedimiento,
+                                  'Abogado_ID'=>$abogado,
+                                  'Usuarios_ID'=>$acusado);
+
+             $idTiket=$this->M_Usuarios->NuevoTiket($procedimiento);
+
+             $mensaje=$this->input->post('mensaje');
+
+             $consulta=array('contenido'=>$mensaje,
+                              'Ticket_ID'=>$idTiket,
+                              'Emisor_ID'=>$abogado,
+                              'Receptor_ID'=>$acusado,
+                              'Estado'=>"N");
+
+             $this->M_Usuarios->NuevoMensaje($consulta);
+
+             //Falta pagina donde se va cuando finalice, coloacar los eerore en la vista echo form eerror, y  el action en el form
+
+
+          }
+
+
+
+
+
+        }
+
 
 }
