@@ -37,6 +37,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                             <select class="form-control has-feedback-right" name="acusado">
                                 <?php foreach ($acusados as $usuarios): ?>
+                                
                                     <option value="<?= $usuarios->ID ?>"><?= $usuarios->Nombre . " " . $usuarios->Apellido1 . " " . $usuarios->Apellido2 ?></option>
                                 <?php endforeach; ?>
                             </select>

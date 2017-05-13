@@ -87,16 +87,23 @@ class M_Usuarios extends CI_Model{
         return $usuarios->row();
     }
 
-    public function Lista_Acusado(){
-        $sql="SELECT * FROM USUARIOS WHERE TIPO_USUARIO ='U'; ";
+    public function Lista_Acusado($tipo){
+        $sql="SELECT * FROM USUARIOS WHERE TIPO_USUARIO ='".$tipo."'; ";
         $usuario= $this->db->query($sql);
         return $usuario->result();
     }
 
-   public function Lista_Juicios($idusuario){
-       $sql= "SELECT * FROM `juicio` INNER JOIN abogado_juicio WHERE abogado_juicio.Usuarios_ID ='".$idusuario."' AND abogado_juicio.Juicios_ID= juicio.ID ;";
+   
+    public function Lista_Juicios($por_pagina,$comienzo){
+       $sql= "SELECT * FROM juicio  LIMIT $por_pagina,$comienzo";
        $lista= $this->db->query($sql);
        return $lista->result();
+   }
+   
+    public function CLista_Juicios(){
+       $sql= "SELECT ID FROM Juicio";
+       $lista= $this->db->query($sql);
+       return $lista->num_rows();
    }
    
    public function Lista_procedimiento($idjuicio){
@@ -134,5 +141,11 @@ class M_Usuarios extends CI_Model{
     $this->db->insert('mensaje',$datos);
    }
 
-
+   public function NombreUsuarios($id){
+       $sql ="SELECT NOMBRE, APELLIDO1,APELLIDO2 FROM USUARIOS WHERE ID =".$id;
+       $nombre=$this->db->query($sql);
+       return $nombre->row();
+   }
+   
+   
 }

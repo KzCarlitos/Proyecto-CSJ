@@ -33,7 +33,7 @@
 
                 <div class="x_content">
 
-                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="<?php echo base_url('index.php/Inicio/crear_juicio');?>">
+                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="<?php echo base_url('index.php/Inicio/crear_juicio');?>" enctype="multipart/form-data">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12" for="nombre">Fecha del Juicio <span class="required">*</span></label>
@@ -116,14 +116,14 @@
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12" for="nombre">Fichero <span class="required">*</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" name="fichero">
+                                    <input type="file" name="fichero">
                                      <?php echo form_error('fichero'); ?>
                                 </div>
                             </div>
 
                         </div>
 
-
+                         
 
 
 

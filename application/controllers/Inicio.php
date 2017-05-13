@@ -225,7 +225,7 @@ class Inicio extends CI_Controller {
         $this->form_validation->set_rules('fjuicio', 'Fecha Juicio', 'required');
         $this->form_validation->set_rules('acusado', 'Nombre Acusado', 'required');
         $this->form_validation->set_rules('estado', 'Estado', 'required');
-        $this->form_validation->set_rules('fichero', 'Fichero', 'required');
+        //$this->form_validation->set_rules('fichero', 'Fichero', 'required');
         $this->form_validation->set_rules('njuicio', 'Numero de juicio', 'required');
         $this->form_validation->set_rules('nprocedimiento', 'Procedimiento', 'required');
         $this->form_validation->set_message('required', 'Debes rellenar el campo %s');
@@ -239,12 +239,13 @@ class Inicio extends CI_Controller {
             $pagina = $this->load->view('nuevo_juicio', Array('usuario' => $usuario), TRUE);
             $this->CargaVista(Array('pagina' => $pagina));
         } else {
+            $nombre = "0315-2017.pdf";
 
             $fjuicio = $this->input->post('fjuicio');
             $acusado = $this->input->post('acusado');
             $abogado = $this->input->post('abogado');
             $estado = $this->input->post('estado');
-            $fichero = $this->input->post('fichero');
+            $fichero = $nombre;
 
             $njuicio = $this->input->post('njuicio');
             $descrip = $this->input->post('descripcion');
@@ -276,7 +277,9 @@ class Inicio extends CI_Controller {
             $DNuevoAcusadoJuicio = array('Usuarios_ID' => $acusado, 'Juicios_ID' => $idjuicio);
             $this->M_Usuarios->NuevoAcusadoJuicio($DNuevoAcusadoJuicio);
 
+            $archivo = $_FILES['fichero']['tmp_name'];
 
+            move_uploaded_file($archivo, APPPATH . '/../uploads/' . $nombre);
 
 
             $usuario = $this->M_Usuarios->Lista_Acusado();
@@ -289,7 +292,21 @@ class Inicio extends CI_Controller {
     public function ver_juicio() {
         $this->load->model('M_Usuarios');
         $idusuario = $_SESSION['DatosUsuario'][0]->ID;
-        $listajuicios = $this->M_Usuarios->Lista_Juicios($idusuario);
+
+        $pages = 6; //Número de registros mostrados por páginas
+
+        $config['base_url'] = site_url('Inicio/ver_juicio/'); // parametro base de la aplicación, si tenemos un .htaccess nos evitamos el index.php
+        $config['total_rows'] = $this->M_Usuarios->CLista_Juicios(); //calcula el número de filas
+        $config['per_page'] = $pages; //Número de registros mostrados por páginas
+        $config['num_links'] = 3; //Número de links mostrados en la paginación
+        $config["uri_segment"] = 3; //el segmento de la paginación
+        $comienzo = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+
+        $this->pagination->initialize($config); //inicializamos la paginació
+
+
+        $listajuicios = $this->M_Usuarios->Lista_Juicios($idusuario, $config['per_page'], $comienzo);
 
 
         $pagina = $this->load->view('ver_juicio', Array('listajuicios' => $listajuicios), TRUE);
@@ -323,7 +340,11 @@ class Inicio extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $id_procedimiento = $this->uri->segment(3);
             $nprocedimiento = $this->M_Usuarios->Devuelve_Nprocedimiento($id_procedimiento);
-            $acusados = $this->M_Usuarios->Lista_Acusado();
+            if ($_SESSION['TipoUsuario'] == 'A') {
+                $acusados = $this->M_Usuarios->Lista_Acusado('U');
+            } else {
+                $acusados = $this->M_Usuarios->Lista_Acusado('A');
+            }
             $pagina = $this->load->view('crear_tiket', Array('nprocedimiento' => $nprocedimiento, 'acusados' => $acusados), TRUE);
             $this->CargaVista(Array('pagina' => $pagina));
         } else {
@@ -344,11 +365,12 @@ class Inicio extends CI_Controller {
                 'Estado' => "N");
             $this->M_Usuarios->NuevoMensaje($consulta);
 
-            $pagina = $this->load->view('Inicio', Array('completado'=>TRUE), TRUE);
+            $pagina = $this->load->view('Inicio', Array('completado' => TRUE), TRUE);
             $this->CargaVista(Array('pagina' => $pagina));
-            
-            //Falta pagina donde se va cuando finalice, coloacar los eerore en la vista echo form eerror, y  el action en el form
         }
     }
+    
+    
+    
 
 }

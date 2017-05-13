@@ -1,5 +1,6 @@
  <!-- footer content -->
-        <footer>
+        
+ <footer>
           <div class="pull-right">
             Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
           </div>
@@ -44,7 +45,8 @@
     <script src="<?=  base_url()?>assets/vendors/starrr/dist/starrr.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="<?=  base_url()?>assets/build/js/custom.min.js"></script>
-    
+    <!-- Funciones de ayuda o edicion -->
+    <script src="<?=  base_url()?>assets/js/Ajax.js"></script>
     
     <script src="<?=  base_url()?>assets/js/moment/moment.js"></script>
     <script src="<?=  base_url()?>assets/js/moment/es.js"></script>
