@@ -17,3 +17,9 @@ function ContestarMensaje(xMensaje,xTicked_id,xEmisor_ID,xReceptor_ID,xEstado){
 }
 
 
+function GeneraNumeroJuicio(Fecha){
+    
+    $("#njuicio").val(Fecha);
+    
+    
+}

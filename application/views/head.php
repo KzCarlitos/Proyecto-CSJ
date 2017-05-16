@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>CSJ-Consultas Judiciales</title>
-
+        
         <!-- Bootstrap -->
         <link href="<?= base_url() ?>assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Font Awesome -->
@@ -31,6 +31,7 @@
 
         <!-- Custom Theme Style -->
         <link href="<?= base_url() ?>assets/build/css/custom.min.css" rel="stylesheet">
+        
     </head>
 
     <body class="nav-md">

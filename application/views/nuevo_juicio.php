@@ -39,7 +39,7 @@
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12" for="nombre">Fecha del Juicio <span class="required">*</span></label>
 
                                 <div class="col-md-8 col-sm-8 col-xs-12 xdisplay_inputx form-group has-feedback">
-                                    <input type="text" class="form-control has-feedback-left" id="single_cal4" placeholder="Fecha del juicio" aria-describedby="inputSuccess2Status4" name="fjuicio">
+                                    <input type="date" class="form-control has-feedback-left" id="fecha" placeholder="Fecha del juicio" aria-describedby="inputSuccess2Status4" name="fjuicio" onchange="GeneraNumeroJuicio(this.value)">
                                     <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                     <span id="inputSuccess2Status4" class="sr-only">(success)</span>
                                 </div>

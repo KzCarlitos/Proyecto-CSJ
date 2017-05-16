@@ -291,7 +291,7 @@ class Inicio extends CI_Controller {
             move_uploaded_file($archivo, APPPATH . '/../uploads/' . $nombre);
 
 
-            $usuario = $this->M_Usuarios->Lista_Acusado();
+            $usuario = $this->M_Usuarios->Lista_Acusado('U');
 
             $pagina = $this->load->view('nuevo_juicio', Array('usuario' => $usuario, 'completado' => TRUE), TRUE);
             $this->CargaVista(Array('pagina' => $pagina));
@@ -374,7 +374,7 @@ class Inicio extends CI_Controller {
                 'Receptor_ID' => $acusado,
                 'Estado' => "N");
             $this->M_Usuarios->NuevoMensaje($consulta);
-
+            
             $pagina = $this->load->view('Inicio', Array('completado' => TRUE), TRUE);
             $this->CargaVista(Array('pagina' => $pagina));
         }
