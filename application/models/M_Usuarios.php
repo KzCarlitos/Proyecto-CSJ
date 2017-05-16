@@ -160,5 +160,11 @@ class M_Usuarios extends CI_Model{
         $this->db->update('usuarios',$datos);
 
     }
+    
+    public function VerNuevoMensaje($iduser){
+        $sql="SELECT * FROM MENSAJE WHERE RECEPTOR_ID = ".$iduser." AND ESTADO = 'N';";
+         $mensaje=$this->db->query($sql);
+       return $mensaje->result();
+    }
    
 }

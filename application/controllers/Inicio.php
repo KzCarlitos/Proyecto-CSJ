@@ -34,12 +34,11 @@ class Inicio extends CI_Controller {
 
         $ExisteUsuario = $this->M_Usuarios->Comprueba_User($user, $pass);
         $PrimerInicio = $this->M_Usuarios->Primer_Inicio($user);
-        
+
         if ($ExisteUsuario == 1 && $PrimerInicio->Primer_inicio == 1) {
-             $this->session->set_userdata('Usuario',$user);
-             
+            $this->session->set_userdata('Usuario', $user);
+
             $this->load->view('primer_inicio');
-            
         } else {
 
 
@@ -380,42 +379,46 @@ class Inicio extends CI_Controller {
             $this->CargaVista(Array('pagina' => $pagina));
         }
     }
-    
-    
-    public function Primer_Inicio(){
-        
+
+    public function Primer_Inicio() {
+
         $this->load->model("M_Usuarios");
 
 
         $pass = $this->input->post('pass');
         $passr = $this->input->post('passr');
-        
-        if($pass==$passr){
-            
-            $Datos =array('Primer_inicio'=>'0',
-                           'Contrasena'=>$pass);
-             $this->M_Usuarios-> NuevaContraseña($_SESSION['Usuario'],$Datos);
-            
-                $DatosUsuario = $this->M_Usuarios->Devuelve_DatosUsuarios($_SESSION['Usuario']);
-                $TipoUsuario = $this->M_Usuarios->Tipo_Usuario($_SESSION['Usuario']);
 
-                $this->session->set_userdata('DatosUsuario', $DatosUsuario);
-                $this->session->set_userdata('TipoUsuario', $TipoUsuario);
-                $this->session->set_userdata('SessionIniciada', TRUE);
-                
+        if ($pass == $passr) {
 
-                $pagina = $this->load->view('Inicio', Array('Datos' => $DatosUsuario), TRUE);
-                $this->CargaVista(Array('pagina' => $pagina));
-            
-        }else{
-             $this->load->view('primer_inicio', array('error' => true));
+            $Datos = array('Primer_inicio' => '0',
+                'Contrasena' => $pass);
+            $this->M_Usuarios->NuevaContraseña($_SESSION['Usuario'], $Datos);
+
+            $DatosUsuario = $this->M_Usuarios->Devuelve_DatosUsuarios($_SESSION['Usuario']);
+            $TipoUsuario = $this->M_Usuarios->Tipo_Usuario($_SESSION['Usuario']);
+
+            $this->session->set_userdata('DatosUsuario', $DatosUsuario);
+            $this->session->set_userdata('TipoUsuario', $TipoUsuario);
+            $this->session->set_userdata('SessionIniciada', TRUE);
+
+
+            $pagina = $this->load->view('Inicio', Array('Datos' => $DatosUsuario), TRUE);
+            $this->CargaVista(Array('pagina' => $pagina));
+        } else {
+            $this->load->view('primer_inicio', array('error' => true));
         }
-        
-       
-        
-        
+    }
+
+      public function ver_tiketC() {
+        $this->load->model('M_Usuarios');
+
+        $listatiket = $this->M_Usuarios->Ver_Tiket('C');
+
+
+        $pagina = $this->load->view('ver_tiketC', Array('listatiket' => $listatiket), TRUE);
+        $this->CargaVista(Array('pagina' => $pagina));
     }
     
     
-
+    
 }

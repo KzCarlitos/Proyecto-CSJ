@@ -85,7 +85,7 @@
                                         <li><a><i class="fa fa-commenting-o"></i> Tikets <span class="fa fa-chevron-down"></span></a>
                                             <ul class="nav child_menu">
 
-                                                <li><a href="<?php echo base_url()?>index.php/Inicio/ver_tiket">Cerrados</a></li>
+                                                <li><a href="<?php echo base_url()?>index.php/Inicio/ver_tiketC">Cerrados</a></li>
                                                 <li><a href="<?php echo base_url()?>index.php/Inicio/ver_tiket">Abiertos</a></li>
                                                 
                                             </ul>
@@ -158,6 +158,24 @@
                                             <span class="badge bg-green">6</span>
                                         </a>
                                         <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                            <?php
+                                               /*$this->load->model('M_Usuarios');
+                                                $mensajes =$this->M_Usuarios->VerNuevoMensaje($_SESSION['DatosUsuario'][0]->ID);
+                                                
+                                                foreach ($mensajes as $mensaje):*/?>
+                                            <li>
+                                                <a>
+                                                    <span class="image"><img src="<?= base_url() ?>assets/images/img.jpg" alt="Profile Image" /></span>
+                                                    <span>
+                                                        <span>John Smith</span>
+                                                        <span class="time"><?=$mensaje->Fecha ?></span>
+                                                    </span>
+                                                    <span class="message">
+                                                        Film festivals used to be do-or-die moments for movie makers. They were where...
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <?php //endforeach;?>
                                             <li>
                                                 <a>
                                                     <span class="image"><img src="<?= base_url() ?>assets/images/img.jpg" alt="Profile Image" /></span>
@@ -170,46 +188,12 @@
                                                     </span>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a>
-                                                    <span class="image"><img src="<?= base_url() ?>assets/images/img.jpg" alt="Profile Image" /></span>
-                                                    <span>
-                                                        <span>John Smith</span>
-                                                        <span class="time">3 mins ago</span>
-                                                    </span>
-                                                    <span class="message">
-                                                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a>
-                                                    <span class="image"><img src="<?= base_url() ?>assets/images/img.jpg" alt="Profile Image" /></span>
-                                                    <span>
-                                                        <span>John Smith</span>
-                                                        <span class="time">3 mins ago</span>
-                                                    </span>
-                                                    <span class="message">
-                                                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a>
-                                                    <span class="image"><img src="<?= base_url() ?>assets/images/img.jpg" alt="Profile Image" /></span>
-                                                    <span>
-                                                        <span>John Smith</span>
-                                                        <span class="time">3 mins ago</span>
-                                                    </span>
-                                                    <span class="message">
-                                                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                    </span>
-                                                </a>
-                                            </li>
+                                            
+                                           
                                             <li>
                                                 <div class="text-center">
                                                     <a>
-                                                        <strong>See All Alerts</strong>
+                                                        <strong>Ver todos</strong>
                                                         <i class="fa fa-angle-right"></i>
                                                     </a>
                                                 </div>
