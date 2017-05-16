@@ -32,24 +32,34 @@ class Inicio extends CI_Controller {
 
 
 
-
         $ExisteUsuario = $this->M_Usuarios->Comprueba_User($user, $pass);
-
-        if ($ExisteUsuario == 1) {
-
-            $DatosUsuario = $this->M_Usuarios->Devuelve_DatosUsuarios($user);
-            $TipoUsuario = $this->M_Usuarios->Tipo_Usuario($user);
-
-            $this->session->set_userdata('DatosUsuario', $DatosUsuario);
-            $this->session->set_userdata('TipoUsuario', $TipoUsuario);
-            $this->session->set_userdata('SessionIniciada', TRUE);
-            //print_r($DatosUsuario);
-
-            $pagina = $this->load->view('Inicio', Array('Datos' => $DatosUsuario), TRUE);
-            $this->CargaVista(Array('pagina' => $pagina));
+        $PrimerInicio = $this->M_Usuarios->Primer_Inicio($user);
+        
+        if ($ExisteUsuario == 1 && $PrimerInicio->Primer_inicio == 1) {
+             $this->session->set_userdata('Usuario',$user);
+             
+            $this->load->view('primer_inicio');
+            
         } else {
 
-            $this->load->view('login', array('error' => true));
+
+
+            if ($ExisteUsuario == 1 && $PrimerInicio->Primer_inicio == 0) {
+
+                $DatosUsuario = $this->M_Usuarios->Devuelve_DatosUsuarios($user);
+                $TipoUsuario = $this->M_Usuarios->Tipo_Usuario($user);
+
+                $this->session->set_userdata('DatosUsuario', $DatosUsuario);
+                $this->session->set_userdata('TipoUsuario', $TipoUsuario);
+                $this->session->set_userdata('SessionIniciada', TRUE);
+                //print_r($DatosUsuario);
+
+                $pagina = $this->load->view('Inicio', Array('Datos' => $DatosUsuario), TRUE);
+                $this->CargaVista(Array('pagina' => $pagina));
+            } else {
+
+                $this->load->view('login', array('error' => true));
+            }
         }
     }
 
@@ -234,7 +244,7 @@ class Inicio extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
 
-            $usuario = $this->M_Usuarios->Lista_Acusado();
+            $usuario = $this->M_Usuarios->Lista_Acusado('U');
 
             $pagina = $this->load->view('nuevo_juicio', Array('usuario' => $usuario), TRUE);
             $this->CargaVista(Array('pagina' => $pagina));
@@ -340,7 +350,8 @@ class Inicio extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $id_procedimiento = $this->uri->segment(3);
             $nprocedimiento = $this->M_Usuarios->Devuelve_Nprocedimiento($id_procedimiento);
-            if ($_SESSION['TipoUsuario'] == 'A') {
+
+            if ($_SESSION['TipoUsuario']->Tipo_Usuario == 'A') {
                 $acusados = $this->M_Usuarios->Lista_Acusado('U');
             } else {
                 $acusados = $this->M_Usuarios->Lista_Acusado('A');
@@ -370,6 +381,40 @@ class Inicio extends CI_Controller {
         }
     }
     
+    
+    public function Primer_Inicio(){
+        
+        $this->load->model("M_Usuarios");
+
+
+        $pass = $this->input->post('pass');
+        $passr = $this->input->post('passr');
+        
+        if($pass==$passr){
+            
+            $Datos =array('Primer_inicio'=>'0',
+                           'Contrasena'=>$pass);
+             $this->M_Usuarios-> NuevaContraseña($_SESSION['Usuario'],$Datos);
+            
+                $DatosUsuario = $this->M_Usuarios->Devuelve_DatosUsuarios($_SESSION['Usuario']);
+                $TipoUsuario = $this->M_Usuarios->Tipo_Usuario($_SESSION['Usuario']);
+
+                $this->session->set_userdata('DatosUsuario', $DatosUsuario);
+                $this->session->set_userdata('TipoUsuario', $TipoUsuario);
+                $this->session->set_userdata('SessionIniciada', TRUE);
+                
+
+                $pagina = $this->load->view('Inicio', Array('Datos' => $DatosUsuario), TRUE);
+                $this->CargaVista(Array('pagina' => $pagina));
+            
+        }else{
+             $this->load->view('primer_inicio', array('error' => true));
+        }
+        
+       
+        
+        
+    }
     
     
 

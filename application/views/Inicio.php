@@ -31,6 +31,8 @@
             
             <?php print_r($_SESSION['DatosUsuario']); ?>
             <?php print_r($_SESSION['TipoUsuario']); ?>
+            <br/>
+            <?php echo date("m/Y");?>
         </div>
     </div>
     <!--Fin de la zona del contenido-->

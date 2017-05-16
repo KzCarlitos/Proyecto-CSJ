@@ -17,6 +17,13 @@ class M_Usuarios extends CI_Model{
         
     }
     
+    public function Primer_Inicio($DNI){
+        $sql="SELECT Primer_inicio FROM usuarios WHERE DNI ='". $DNI."';";
+        $Usuario= $this->db->query($sql);
+        return $Usuario->row();
+    }
+
+
     public function Devuelve_DatosUsuarios($DNI){
         $sql="SELECT * FROM USUARIOS WHERE DNI ='".$DNI."';";
         $usuario= $this->db->query($sql);
@@ -147,5 +154,11 @@ class M_Usuarios extends CI_Model{
        return $nombre->row();
    }
    
+    public function NuevaContraseña($DNI,$datos){
+        
+        $this->db->where('DNI',$DNI);
+        $this->db->update('usuarios',$datos);
+
+    }
    
 }

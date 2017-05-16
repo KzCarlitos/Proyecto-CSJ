@@ -30,18 +30,18 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-              <form method="post" action="<?php echo base_url('index.php/Inicio/login/');?>">
-              <h1>Bienvenido a CSJ</h1>
+              <form method="post" action="<?php echo base_url('index.php/Inicio/Primer_Inicio/');?>">
+              <h1>Nueva Contraseña</h1>
               <div>
-                  <input type="text" name="user" class="form-control" placeholder="Usuario" required="" />
+                  <input type="password" name="pass" class="form-control" placeholder="Nueva Contraseña" required="" />
               </div>
               <div>
-                  <input type="password" name="pass" class="form-control" placeholder="Contraseña" required="" />
+                  <input type="password" name="passr" class="form-control" placeholder="Repite la Contraseña" required="" />
               </div>
               <div>
-                  <input type="submit" value="Acceder" class="btn btn-default submit">
+                  <input type="submit" value="Establecer Contraseña" class="btn btn-default submit">
                 
-                <?php echo anchor("Inicio/reset", "¿Has olvidado tu contraseña?", "class='reset_pass'") ?>
+                
                  
               </div>
 
@@ -49,7 +49,7 @@
               
               
               <div class="separator">
-                <?php if(isset($error)){echo "El usuario o la contraseña son incorrecto";}?>
+                <?php if(isset($error)){echo "La contraseña no coinciden";}?>
 
                 <div class="clearfix"></div>
                 <br />
@@ -63,7 +63,7 @@
           </section>
         </div>
 
-       
+      
       </div>
     </div>
   </body>
