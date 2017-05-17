@@ -51,8 +51,46 @@
 
 <script>
     function GeneraNumeroJuicio(Fecha) {
-        Fecha.split()
-        $("#njuicio").val(Fecha);
+        $.get("<?php echo base_url('index.php/Inicio/GeneraNumeroProcedimiento') ?>","",function(data){
+            console.log(data);
+            var json = JSON.parse(data);
+            var numero;
+            for (post in json)
+            {
+                numero= json[post].numero;
+            }
+        
+        var gnum = Fecha.split('-');
+        console.log(gnum);
+        var nproc =  parseInt(numero) + 1;
+        var nprocedimiento= nproc + gnum[1] +"/"+ gnum[0];
+        
+        
+       
+        $("#nprocedimiento").val(nprocedimiento);
+        });
+        
+        
+        $.get("<?php echo base_url('index.php/Inicio/GeneraNumeroJuicio') ?>","",function(data){
+            console.log(data);
+            var json = JSON.parse(data);
+            var numero;
+            for (post in json)
+            {
+                numero= json[post].numero;
+            }
+        
+        var gnum = Fecha.split('-');
+        console.log(gnum);
+        var nproc =  parseInt(numero) + 1;
+        var nprocedimiento= nproc + gnum[1] +"/"+ gnum[0];
+        
+        
+        $("#njuicio").val(nprocedimiento);
+       
+        });
+       
+        
 
     }</script>
 <script src="<?= base_url() ?>assets/js/moment/moment.js"></script>

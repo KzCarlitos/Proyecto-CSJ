@@ -49,7 +49,7 @@
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12" for="njuicio">Nº Juicio <span class="required"></span>
                                 </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <input type="text" id="njuicio" name="njuicio" value="<?= set_value('njuicio') ?>"  class="form-control col-md-7 col-xs-12">
+                                    <input type="text" id="njuicio" name="njuicio" value="<?= set_value('njuicio') ?>"  class="form-control col-md-7 col-xs-12" readonly="readonly">
                                     <?php echo form_error('njuicio'); ?>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12" for="nombre">NºProcedimiento <span class="required">*</span>
                                 </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <input type="text" name='nprocedimiento' id="nprocedimiento" value="<?= set_value('nprocedimiento') ?>" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" name='nprocedimiento' id="nprocedimiento" value="<?= set_value('nprocedimiento') ?>" class="form-control col-md-7 col-xs-12" readonly="readonly">
                                     <?php echo form_error('nprocedimiento'); ?>
                                 </div>
                             </div>

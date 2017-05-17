@@ -166,5 +166,17 @@ class M_Usuarios extends CI_Model{
          $mensaje=$this->db->query($sql);
        return $mensaje->result();
     }
+    
+     public function CantidadProcedimiento(){
+         $sql="SELECT count(*)as numero FROM PROCEDIMIENTO";
+         $cantidad= $this->db->query($sql);
+         return $cantidad->result();
+     }
+     
+     public function CantidadJuicio(){
+         $sql="SELECT count(*)as numero FROM JUICIO";
+         $cantidad= $this->db->query($sql);
+         return $cantidad->result();
+     }
    
 }

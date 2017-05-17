@@ -419,6 +419,18 @@ class Inicio extends CI_Controller {
         $this->CargaVista(Array('pagina' => $pagina));
     }
     
+    public function GeneraNumeroProcedimiento(){
+         $this->load->model('M_Usuarios');
+         $numero = $this->M_Usuarios->CantidadProcedimiento();
+         echo json_encode($numero);
+    }
+    
+    public function GeneraNumeroJuicio(){
+         $this->load->model('M_Usuarios');
+         $numero = $this->M_Usuarios->CantidadJuicio();
+         echo json_encode($numero);
+    }
+    
     
     
 }
