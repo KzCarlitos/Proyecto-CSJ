@@ -431,6 +431,21 @@ class Inicio extends CI_Controller {
          echo json_encode($numero);
     }
     
-    
+    public function ContestaMensaje(){
+        
+        $data= $this->input->post();
+        $this->load->model('M_Usuarios');
+        $mensaje= array('contenido' => $data['contenido'],
+                'Ticket_ID' => data['tiket'],
+                'Emisor_ID' => $data['emisor'],
+                'Receptor_ID' => $data['receptor'],
+                'Estado' => "N");
+        
+        
+        
+        $this->M_Usuarios->NuevoMensaje($mensaje);
+        
+               
+    }
     
 }

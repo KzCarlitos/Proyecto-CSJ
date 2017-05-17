@@ -92,7 +92,49 @@
        
         
 
-    }</script>
+    }
+ 
+    
+    
+    </script>
+    <script>
+       function Contestar(){
+           
+        var mensaje =$('#contenido').val();
+        var idtiket =$('#Tikect_ID').val();
+        var emisor =$('#Emisor_ID').val();
+        var receptor =$('#Receptor_ID').val();
+        var estado = "N";
+        
+        
+        $.ajax({
+            type:"POST",
+            url: "<?php echo base_url('index.php/Inicio/ContestaMensaje/') ?>",
+            data:{
+                'contenido':mensaje,
+                'tiket':idtiket,
+                'emisor':emisor,
+                'receptor':receptor,
+                'estado':estado
+            },
+            success:function(data){
+                alert('Los datos se agregaron');
+            },
+            error:function(jqXHR, textStatus, errorThrown){
+                console.log('Error:' + errorThrown);
+            }
+            
+        });
+           
+           
+       }
+        
+        
+        
+    
+    
+    
+    </script>
 <script src="<?= base_url() ?>assets/js/moment/moment.js"></script>
 <script src="<?= base_url() ?>assets/js/moment/es.js"></script>
 </body>

@@ -3,10 +3,15 @@
     <div class="row">
         <?php foreach ($listatiket as $lista): ?>
             <div class="col-md-12 col-sm-12 col-xs-12">
+                
+                <input type="text" value="<?= $lista->ID ?>" hidden="hidden" id="Tikect_ID">
+                <input type="text" value="<?=$_SESSION['DatosUsuario'][0]->ID?>" hidden="hidden" id="Emisor_ID">
+                
                 <div class="x_panel">
                     <div class="x_title">
                         <h2><i class="fa fa-commenting-o">
-
+                                
+                                
                             </i> Nº Tiket: <?= $lista->ID ?> <small>Estado: Abierto &nbsp;/&nbsp;  Fecha de Creación: <?= $lista->Fecha_Creacion ?></small></h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -32,6 +37,7 @@
                                 <div id="collapseOne<?= $lista->ID ?>" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
                                     <?php foreach ($mensajes as $mensaje): ?>
                                         <div class="media event">
+                                            <input type="text" value="<?=$mensaje->Emisor_ID?>" id="Receptor_ID" hidden="hidden">
                                             <a class="pull-left border-green profile_thumb">
                                                 <i class="fa fa-user green"></i>
                                             </a>
@@ -46,8 +52,8 @@
                                             <div class="ln_solid"></div>
                                         <?php endforeach; ?>
                                         <div class="col-md-12">
-                                            <div class="col-md-10"> <textarea class="resizable_textarea form-control" id="respuesta" placeholder="Escriba aquí el mensaje..." name="mensaje"></textarea></div>
-                                            <input type="submit" class="btn btn-success" name="contestar" id="bcontestar" value="Enviar Mensaje">
+                                            <div class="col-md-10"> <textarea class="resizable_textarea form-control" id="contenido" placeholder="Escriba aquí el mensaje..." name="mensaje"></textarea></div>
+                                            <button class="btn btn-success" name="contestar" id="bcontestar" onclick="Contestar()" >Enviar Mensaje</button>
                                         </div>
                                         
                                     </div>
