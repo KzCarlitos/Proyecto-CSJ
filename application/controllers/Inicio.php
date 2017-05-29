@@ -433,15 +433,20 @@ class Inicio extends CI_Controller {
     
     public function ContestaMensaje(){
         
-        $data= $this->input->post();
+        $contenido= $this->input->post('contenido');    
+        $tiket= $this->input->post('tiket');
+        $emisor= $this->input->post('emisor');
+        $receptor= $this->input->post('receptor');
+        $estado= $this->input->post('estado');
+        
         $this->load->model('M_Usuarios');
-        $mensaje= array('contenido' => $data['contenido'],
-                'Ticket_ID' => data['tiket'],
-                'Emisor_ID' => $data['emisor'],
-                'Receptor_ID' => $data['receptor'],
+        $mensaje= array('contenido' => $contenido,
+                'Ticket_ID' => $tiket,
+                'Emisor_ID' => $emisor,
+                'Receptor_ID' => $receptor,
                 'Estado' => "N");
         
-        
+       
         
         $this->M_Usuarios->NuevoMensaje($mensaje);
         

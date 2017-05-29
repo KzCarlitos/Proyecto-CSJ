@@ -110,19 +110,17 @@
         $.ajax({
             type:"POST",
             url: "<?php echo base_url('index.php/Inicio/ContestaMensaje/') ?>",
-            data:{
-                'contenido':mensaje,
+            data:{'contenido':mensaje,
                 'tiket':idtiket,
                 'emisor':emisor,
                 'receptor':receptor,
                 'estado':estado
             },
-            success:function(data){
+            success:function(){
                 alert('Los datos se agregaron');
+                window.location.href = "<?php echo base_url('index.php/Inicio/ver_tiket/') ?>";
             },
-            error:function(jqXHR, textStatus, errorThrown){
-                console.log('Error:' + errorThrown);
-            }
+            
             
         });
            

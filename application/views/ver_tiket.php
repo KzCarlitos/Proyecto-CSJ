@@ -20,6 +20,7 @@
                         </ul>
                         <div class="clearfix"></div>
                     </div>
+                    
                     <div class="x_content">
 
                         <!-- start accordion -->
@@ -29,13 +30,17 @@
                         $NProcedimiento = $this->M_Usuarios->Devuelve_Nprocedimiento($lista->Procedimiento_ID);
                         // print_r($mensaje);
                         ?>
+                        
                         <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                            
                             <div class="panel">
+                                
                                 <a class="panel-heading" role="tab" id="headingOne<?= $lista->ID ?>" data-toggle="collapse" data-parent="#accordion" href="#collapseOne<?= $lista->ID ?>" aria-expanded="false" aria-controls="collapseOne">
                                     <h4 class="panel-title">Nº Procedimiento: <?php echo $NProcedimiento->NUM_PROCEDIMIENTO; ?></h4>
                                 </a>
+                               
                                 <div id="collapseOne<?= $lista->ID ?>" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
-                                    <?php foreach ($mensajes as $mensaje): ?>
+                                     <?php foreach ($mensajes as $mensaje): ?>
                                         <div class="media event">
                                             <input type="text" value="<?=$mensaje->Emisor_ID?>" id="Receptor_ID" hidden="hidden">
                                             <a class="pull-left border-green profile_thumb">
@@ -50,32 +55,31 @@
                                             </div>
 
                                             <div class="ln_solid"></div>
-                                        <?php endforeach; ?>
-                                        <div class="col-md-12">
-                                            <div class="col-md-10"> <textarea class="resizable_textarea form-control" id="contenido" placeholder="Escriba aquí el mensaje..." name="mensaje"></textarea></div>
-                                            <button class="btn btn-success" name="contestar" id="bcontestar" onclick="Contestar()" >Enviar Mensaje</button>
-                                        </div>
+                                        
+                                        
                                         
                                     </div>
 
 
-
+                                    <?php endforeach; ?>
+                                    <div class="col-md-12">
+                                            <div class="col-md-10"> <textarea class="resizable_textarea form-control" id="contenido" placeholder="Escriba aquí el mensaje..." name="mensaje"></textarea></div>
+                                            <button class="btn btn-success" name="contestar" id="bcontestar" onclick="Contestar()" >Enviar Mensaje</button>
+                                        </div>
                                 </div>
+                                
                             </div>
-
-
-
-
-
 
 
                             <!-- end of accordion -->
 
-
+                            
                         </div>
+                        
                     </div>
                 </div>
 
             </div>
         <?php endforeach; ?>
     </div>
+</div>

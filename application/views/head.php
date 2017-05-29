@@ -169,7 +169,7 @@
                                                     <span class="image"><img src="<?= base_url() ?>assets/images/img.jpg" alt="Profile Image" /></span>
                                                     <span>
                                                         <span>John Smith</span>
-                                                        <span class="time"><?=$mensaje->Fecha ?></span>
+                                                        <span class="time"><?php//$mensaje->Fecha ?></span>
                                                     </span>
                                                     <span class="message">
                                                         Film festivals used to be do-or-die moments for movie makers. They were where...
