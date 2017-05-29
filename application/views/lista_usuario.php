@@ -63,7 +63,7 @@
                           </div>
                             <?php
                                 if($user->Tipo_Usuario=='R'){$tusuario='Administrador';}
-                                          elseif ($_SESSION['TipoUsuario']=='A') {$tusuario='Abogado';}
+                                          elseif ($user->Tipo_Usuario=='A') {$tusuario='Abogado';}
                                           else{$tusuario='Usuario';}
 
                                 ?>
