@@ -47,6 +47,13 @@ class M_Usuarios extends CI_Model{
         return $usuarios->result();
     }
     
+    public function Lista_FUsuario($tipo){
+        $sql="SELECT * FROM USUARIOS where baja ='0' and tipo_usuario ='".$tipo."';";
+        $usuarios=$this->db->query($sql);
+        return $usuarios->result();
+    }
+
+
     public function DatosUnUsuario($id){
         $sql="SELECT * FROM USUARIOS WHERE ID ='".$id."';";
         $datos=$this->db->query($sql);
@@ -101,8 +108,8 @@ class M_Usuarios extends CI_Model{
     }
 
    
-    public function Lista_Juicios($por_pagina,$comienzo){
-       $sql= "SELECT * FROM juicio  LIMIT $por_pagina,$comienzo";
+    public function Lista_Juicios($comienzo,$por_pagina){
+       $sql= "SELECT * FROM juicio  LIMIT $comienzo,$por_pagina";
        $lista= $this->db->query($sql);
        return $lista->result();
    }

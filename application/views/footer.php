@@ -133,6 +133,30 @@
     
     
     </script>
+    
+       <script>
+       function Filtrar(){
+           
+            var tipo_usuario= $('#filtro').val();
+            var texto= $('.right_col').html();
+        $.ajax({
+            type:"POST",
+            url: "<?php echo base_url('index.php/Inicio/Lista_Filtrada/') ?>",
+            data:{'tipo':tipo_usuario
+            },
+            success:function(datos){
+                console.log(datos);
+               $('.right_col').html(datos);
+            },
+            
+            
+        });
+           
+           
+       } 
+    
+    
+    </script>
 <script src="<?= base_url() ?>assets/js/moment/moment.js"></script>
 <script src="<?= base_url() ?>assets/js/moment/es.js"></script>
 </body>

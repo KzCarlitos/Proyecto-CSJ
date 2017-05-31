@@ -41,7 +41,7 @@
               <div>
                   <input type="submit" value="Acceder" class="btn btn-default submit">
                 
-                <?php echo anchor("Inicio/reset", "¿Has olvidado tu contraseña?", "class='reset_pass'") ?>
+                  <a>¿Has olvidado tu contraseña?</a>
                  
               </div>
 

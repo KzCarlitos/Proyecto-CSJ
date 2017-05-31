@@ -62,13 +62,8 @@ class Inicio extends CI_Controller {
         }
     }
 
-    /**
-     * carga una pagiga en la que informa al usuario del cambio de contraseña.
-     */
-    public function reset() {
-        
-    }
-
+   
+   
     /**
      * Crea un nuevo usuario en la base de datos.
      */
@@ -315,7 +310,7 @@ class Inicio extends CI_Controller {
         $this->pagination->initialize($config); //inicializamos la paginació
 
 
-        $listajuicios = $this->M_Usuarios->Lista_Juicios($idusuario, $config['per_page'], $comienzo);
+        $listajuicios = $this->M_Usuarios->Lista_Juicios($comienzo, $config['per_page']);
 
 
         $pagina = $this->load->view('ver_juicio', Array('listajuicios' => $listajuicios), TRUE);
@@ -374,7 +369,7 @@ class Inicio extends CI_Controller {
                 'Receptor_ID' => $acusado,
                 'Estado' => "N");
             $this->M_Usuarios->NuevoMensaje($consulta);
-            
+
             $pagina = $this->load->view('Inicio', Array('completado' => TRUE), TRUE);
             $this->CargaVista(Array('pagina' => $pagina));
         }
@@ -409,7 +404,7 @@ class Inicio extends CI_Controller {
         }
     }
 
-      public function ver_tiketC() {
+    public function ver_tiketC() {
         $this->load->model('M_Usuarios');
 
         $listatiket = $this->M_Usuarios->Ver_Tiket('C');
@@ -418,39 +413,47 @@ class Inicio extends CI_Controller {
         $pagina = $this->load->view('ver_tiketC', Array('listatiket' => $listatiket), TRUE);
         $this->CargaVista(Array('pagina' => $pagina));
     }
-    
-    public function GeneraNumeroProcedimiento(){
-         $this->load->model('M_Usuarios');
-         $numero = $this->M_Usuarios->CantidadProcedimiento();
-         echo json_encode($numero);
-    }
-    
-    public function GeneraNumeroJuicio(){
-         $this->load->model('M_Usuarios');
-         $numero = $this->M_Usuarios->CantidadJuicio();
-         echo json_encode($numero);
-    }
-    
-    public function ContestaMensaje(){
-        
-        $contenido= $this->input->post('contenido');    
-        $tiket= $this->input->post('tiket');
-        $emisor= $this->input->post('emisor');
-        $receptor= $this->input->post('receptor');
-        $estado= $this->input->post('estado');
-        
+
+    public function GeneraNumeroProcedimiento() {
         $this->load->model('M_Usuarios');
-        $mensaje= array('contenido' => $contenido,
-                'Ticket_ID' => $tiket,
-                'Emisor_ID' => $emisor,
-                'Receptor_ID' => $receptor,
-                'Estado' => "N");
-        
-       
-        
-        $this->M_Usuarios->NuevoMensaje($mensaje);
-        
-               
+        $numero = $this->M_Usuarios->CantidadProcedimiento();
+        echo json_encode($numero);
     }
-    
+
+    public function GeneraNumeroJuicio() {
+        $this->load->model('M_Usuarios');
+        $numero = $this->M_Usuarios->CantidadJuicio();
+        echo json_encode($numero);
+    }
+
+    public function ContestaMensaje() {
+
+        $contenido = $this->input->post('contenido');
+        $tiket = $this->input->post('tiket');
+        $emisor = $this->input->post('emisor');
+        $receptor = $this->input->post('receptor');
+        $estado = $this->input->post('estado');
+
+        $this->load->model('M_Usuarios');
+        $mensaje = array('contenido' => $contenido,
+            'Ticket_ID' => $tiket,
+            'Emisor_ID' => $emisor,
+            'Receptor_ID' => $receptor,
+            'Estado' => "N");
+
+
+
+        $this->M_Usuarios->NuevoMensaje($mensaje);
+    }
+
+    public function Lista_Filtrada() {
+        
+        $tipo_user = $this->input->post('tipo');
+        $this->load->model('M_Usuarios');
+        $usuarios = $this->M_Usuarios->Lista_FUsuario($tipo_user);
+
+         $pagina=$this->load->view('lista_usuario', Array('usuarios' => $usuarios), TRUE);
+        $this->load->view('vjx',Array('pagina' => $pagina));
+    }
+
 }
