@@ -4,7 +4,7 @@
         <?php foreach ($listatiket as $lista): ?>
             <div class="col-md-12 col-sm-12 col-xs-12">
                 
-                <input type="text" value="<?= $lista->ID ?>" hidden="hidden" id="Tikect_ID">
+                <input type="text" value="<?= $lista->ID ?>" hidden="hidden" id="Tikect_ID<?= $lista->ID ?>">
                 <input type="text" value="<?=$_SESSION['DatosUsuario'][0]->ID?>" hidden="hidden" id="Emisor_ID">
                 
                 <div class="x_panel">
@@ -62,9 +62,10 @@
 
 
                                     <?php endforeach; ?>
+                                    
                                     <div class="col-md-12">
-                                            <div class="col-md-10"> <textarea class="resizable_textarea form-control" id="contenido" placeholder="Escriba aquí el mensaje..." name="mensaje"></textarea></div>
-                                            <button class="btn btn-success" name="contestar" id="bcontestar" onclick="Contestar()" >Enviar Mensaje</button>
+                                            <div class="col-md-10"> <textarea class="resizable_textarea form-control" id="contenido<?= $lista->ID ?>" placeholder="Escriba aquí el mensaje..." name="mensaje"></textarea></div>
+                                            <button class="btn btn-success" name="contestar" id="bcontestar<?= $lista->ID ?>" onclick="Contestar(<?= $lista->ID ?>)" >Enviar Mensaje</button>
                                         </div>
                                 </div>
                                 

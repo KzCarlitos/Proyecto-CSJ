@@ -123,7 +123,7 @@
                                 <a data-toggle="tooltip" data-placement="top" title="Lock">
                                     <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                                 </a>
-                                <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                                <a data-toggle="tooltip" data-placement="top" title="Desconectarse" href="<?php echo base_url()?>index.php/Inicio/Desconectarse"> 
                                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                                 </a>
                             </div>

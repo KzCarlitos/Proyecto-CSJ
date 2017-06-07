@@ -44,7 +44,7 @@
                                     </div>
                                     <div id="collapseOne<?= $listapro->ID ?>" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
 
-                                        <embed src="<?= base_url() ?>uploads\<?= $listapro->Fichero ?>" width="100%" height="500">
+                                        <embed src="<?= base_url() ?>uploads\<?= $listapro->Fichero ?>"  width="100%" height="500">
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -61,4 +61,5 @@
     <div align="center">
         <?php echo $this->pagination->create_links() ?>
     </div>
+</div>
 

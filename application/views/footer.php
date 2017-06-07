@@ -98,15 +98,15 @@
     
     </script>
     <script>
-       function Contestar(){
+       function Contestar(idtiket){
            
-        var mensaje =$('#contenido').val();
-        var idtiket =$('#Tikect_ID').val();
+        var mensaje =$('#contenido'+idtiket).val();
+        var idtiket =idtiket;
         var emisor =$('#Emisor_ID').val();
         var receptor =$('#Receptor_ID').val();
         var estado = "N";
         
-        
+        console.log(mensaje);
         $.ajax({
             type:"POST",
             url: "<?php echo base_url('index.php/Inicio/ContestaMensaje/') ?>",
