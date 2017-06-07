@@ -4,7 +4,7 @@
 
         <?php foreach ($listajuicios as $lista): ?>
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+                <div class="x_panel" style="height: auto;">
                     <div class="x_title">
                         <h2><i class="fa fa-gavel"></i> Nº Juicio: <?= $lista->Numero_Juicio ?> <small>Estado: <?php
                                 if ($lista->Estado == 'A') {
@@ -16,13 +16,13 @@
                                 }
                                 ?></small></h2>
                         <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            <li><a class="collapse-link"><i class="fa fa-chevron-down"></i></a>
                             </li>
 
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
+                    <div class="x_content" style="display: none;" >
 
                         <!-- start accordion -->
                         <?php

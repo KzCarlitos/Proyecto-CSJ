@@ -444,6 +444,9 @@ class Inicio extends CI_Controller {
 
 
         $this->M_Usuarios->NuevoMensaje($mensaje);
+        $listatiket = $this->M_Usuarios->Ver_Tiket('A');
+        $pagina=$this->load->view('ver_tiket', Array('listatiket' => $listatiket), TRUE);
+        $this->load->view('vjx',Array('pagina' => $pagina));
     }
 
     public function Lista_Filtrada() {
