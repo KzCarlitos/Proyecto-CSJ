@@ -7,7 +7,7 @@
 
     <div class="page-title">
         <div class="title_left">
-            <h3>Editando el Usuario ID <?=$dato->ID?></h3>
+            <h3>Editando al usuario <?=$dato->Nombre." ".$dato->Apellido1 ?></h3>
         </div>
 
       

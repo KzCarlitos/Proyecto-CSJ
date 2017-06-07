@@ -52,7 +52,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">¿Desear dar de baja al usuario con id:<?= $user->ID ?>?</h4>
+                                        <h4 class="modal-title" id="myModalLabel">¿Deseas dar de baja al usuario <?php echo $user->Nombre." ".$user->Apellido1; ?>?</h4>
                                     </div>
                                     <div class="modal-body">
                                         En el caso de que este sea el usuario que tenga iniciada la sesion de desconectara automaticamente de ella.
