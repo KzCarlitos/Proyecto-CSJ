@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Inicio extends CI_Controller {
 
+
     public function index() {
         if (isset($_SESSION['SessionIniciada'])) {
             $pagina = $this->load->view('Inicio', '', TRUE);
@@ -12,7 +13,10 @@ class Inicio extends CI_Controller {
             $this->load->view('login');
         }
     }
-
+/**
+ * Se encarga de realizar la carga de las diferentes vistas.
+ * @param $pagina es el contenido de la pagina el cual se va mostrar.
+ */
     public function CargaVista($pagina) {
         $this->load->view('head');
         $this->load->view('body', $pagina);
@@ -20,7 +24,7 @@ class Inicio extends CI_Controller {
     }
 
     /**
-     * esta funcion se encarga de validar al usuario
+     * Esta funcion se encarga de validar al usuario en la bd y darle acceso a la pagina de inicio.
      */
     public function login() {
 
@@ -122,7 +126,9 @@ class Inicio extends CI_Controller {
             $this->CargaVista(Array('pagina' => $pagina));
         }
     }
-
+/**
+ * Se encarga de carga una pagina con la lista de usuarios.
+ */
     public function lista_usuarios() {
         $this->load->model('M_Usuarios');
         $usuarios = $this->M_Usuarios->Lista_Usuarios();
@@ -130,7 +136,9 @@ class Inicio extends CI_Controller {
         $pagina = $this->load->view('lista_usuario', Array('usuarios' => $usuarios), TRUE);
         $this->CargaVista(Array('pagina' => $pagina));
     }
-
+/**
+ * Carga una vista de edicion de usuario.
+ */
     public function editar_usuario() {
         $id = $this->uri->segment(3);
         $this->load->model('M_Usuarios');
@@ -139,7 +147,9 @@ class Inicio extends CI_Controller {
         $pagina = $this->load->view('editar_usuario', Array('datos' => $datos), TRUE);
         $this->CargaVista(Array('pagina' => $pagina));
     }
-
+/**
+ * Realiza la validadcion de los campos de la vista editar usuario y si son correcto lo inserta en la base de datos.
+ */
     public function modificar_usuario() {
         $this->form_validation->set_error_delimiters('<span style="color: red">', '</span>');
 
@@ -200,7 +210,10 @@ class Inicio extends CI_Controller {
             $this->CargaVista(Array('pagina' => $pagina));
         }
     }
-
+/**
+ * Se encarga de deshabilitar el usuario en la bd, para que este no pueda acceder al portal.
+ * @param type $id es el numero de identificacion del usuario.
+ */
     public function Baja_Usuario($id) {
         $id = $this->uri->segment(3);
         $this->load->model('M_Usuarios');
@@ -214,14 +227,18 @@ class Inicio extends CI_Controller {
             $this->lista_usuarios();
         }
     }
-
+/**
+ * Es la funcion encargada de cerrar la sesion del usuario conectado.
+ */
     public function Desconectarse() {
         $this->session->unset_userdata('DatosUsuario');
         $this->session->unset_userdata('TipoUsuario');
         $this->session->unset_userdata('SessionIniciada');
         $this->index();
     }
-
+/**
+ * Realiza la craeacion de un nuevo juicio. Tras rellenar los datos y ser validado estos se inserta en la base de datos.
+ */
     public function crear_juicio() {
         $this->load->model('M_Usuarios');
         $this->form_validation->set_error_delimiters('<span style="color: red">', '</span>');
@@ -292,7 +309,9 @@ class Inicio extends CI_Controller {
             $this->CargaVista(Array('pagina' => $pagina));
         }
     }
-
+/**
+ * Es la funcion que se encarga de cargar la lista de todos los juicios almacenados en la base de datos.
+ */
     public function ver_juicio() {
         $this->load->model('M_Usuarios');
         $idusuario = $_SESSION['DatosUsuario'][0]->ID;
@@ -316,7 +335,9 @@ class Inicio extends CI_Controller {
         $pagina = $this->load->view('ver_juicio', Array('listajuicios' => $listajuicios), TRUE);
         $this->CargaVista(Array('pagina' => $pagina));
     }
-
+/**
+ * Carga una pagina la cual contiene una lista de todos los tiket generados.
+ */
     public function ver_tiket() {
         $this->load->model('M_Usuarios');
 
@@ -326,7 +347,9 @@ class Inicio extends CI_Controller {
         $pagina = $this->load->view('ver_tiket', Array('listatiket' => $listatiket), TRUE);
         $this->CargaVista(Array('pagina' => $pagina));
     }
-
+/**
+ * Es la funcion que se encarga de validar el tiket e insertarlo en la base de datos si dichos datos fueran correcto.
+ */
     public function Crear_Tiket() {
         $this->load->model('M_Usuarios');
         $this->form_validation->set_error_delimiters('<span style="color: red">', '</span>');
@@ -374,7 +397,9 @@ class Inicio extends CI_Controller {
             $this->CargaVista(Array('pagina' => $pagina));
         }
     }
-
+/**
+ * Comprueba mediante una peticion a la base de datos si es la primera vez que se inicia la sesion si es asi, se redirige a una pagina para solicitar el cambio de contraseña
+ */
     public function Primer_Inicio() {
 
         $this->load->model("M_Usuarios");
@@ -403,7 +428,9 @@ class Inicio extends CI_Controller {
             $this->load->view('primer_inicio', array('error' => true));
         }
     }
-
+/**
+ * carga una vista con una lista de tiket con estado cerrado.
+ */
     public function ver_tiketC() {
         $this->load->model('M_Usuarios');
 
@@ -413,19 +440,25 @@ class Inicio extends CI_Controller {
         $pagina = $this->load->view('ver_tiketC', Array('listatiket' => $listatiket), TRUE);
         $this->CargaVista(Array('pagina' => $pagina));
     }
-
+/**
+ * Se encarga de generar un numero para el procedimiento.
+ */
     public function GeneraNumeroProcedimiento() {
         $this->load->model('M_Usuarios');
         $numero = $this->M_Usuarios->CantidadProcedimiento();
         echo json_encode($numero);
     }
-
+/**
+ * Se encarga de generar un numero para el juicio
+ */
     public function GeneraNumeroJuicio() {
         $this->load->model('M_Usuarios');
         $numero = $this->M_Usuarios->CantidadJuicio();
         echo json_encode($numero);
     }
-
+/**
+ * Es la funcion encargada de recoger el mensaje del usuario sobre un tiket y alamcenarlo en la BD.
+ */
     public function ContestaMensaje() {
 
         $contenido = $this->input->post('contenido');
@@ -448,7 +481,9 @@ class Inicio extends CI_Controller {
         $pagina=$this->load->view('ver_tiket', Array('listatiket' => $listatiket), TRUE);
         $this->load->view('vjx',Array('pagina' => $pagina));
     }
-
+/**
+ * Devuelve la lista de usuario, filtrada segun el tipo de usuario.
+ */
     public function Lista_Filtrada() {
         
         $tipo_user = $this->input->post('tipo');
